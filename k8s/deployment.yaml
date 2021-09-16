@@ -1,0 +1,67 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  labels:
+    type: "boot-app"
+  name: "petclinic"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: "boot-app"
+  template:
+    metadata:
+      labels:
+        type: "boot-app"
+    spec:
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: app-config
+          configMap:
+            name: app-config
+      containers:
+      - env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: yugabytedb
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 10"]
+        image: "spring-petclinic:2.4.5"
+        imagePullPolicy: "Never"
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: "/actuator/health/liveness"
+            port: 8080
+            scheme: "HTTP"
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: "petclinic"
+        resources:
+          limits:
+            memory: "756Mi"
+            cpu: "300m"
+          requests:
+            memory: "756Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 8080
+          name: "web"
+          protocol: "TCP"
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: "/actuator/health/readiness"
+            port: 8080
+            scheme: "HTTP"
+          initialDelaySeconds: 0
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 10
+        volumeMounts:
+          - mountPath: /app/config/
+            name: app-config

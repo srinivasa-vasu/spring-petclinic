@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta22
+kind: Config
+build:
+  artifacts:
+  - image: spring-petclinic
+    context: ../
+    buildpacks:
+      builder: paketobuildpacks/builder:base
+  tagPolicy:
+    envTemplate:
+      template: 2.4.5
+  local:
+    push: true
+deploy:
+  kustomize: {}

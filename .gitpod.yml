@@ -1,0 +1,42 @@
+image:
+  file: .gitpodcontainer/Dockerfile
+
+tasks:
+  - name: db-run
+    before: /usr/local/yugabyte/bin/post_install.sh
+    init: |
+      yugabyted start --base_dir=$STORE/ybd1 --listen=$LISTEN
+  - name: k8s-run
+    init: minikube start
+
+# exposed ports
+ports:
+  - port: 8080
+    onOpen: notify
+  - port: 7000
+    onOpen: notify
+  - port: 9000
+    onOpen: notify
+  - port: 37843
+    onOpen: ignore
+  - port: 7100
+    onOpen: ignore
+  - port: 9100
+    onOpen: ignore
+  - port: 5433
+    onOpen: ignore
+  - port: 13000
+    onOpen: ignore
+  - port: 9042
+    onOpen: ignore
+  - port: 12000
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+    - redhat.java
+    - vscjava.vscode-java-debug
+    - vscjava.vscode-java-test
+    - pivotal.vscode-spring-boot
+    - GitHub.vscode-pull-request-github

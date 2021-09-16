@@ -1,6 +1,6 @@
 FROM gitpod/workspace-full
 
-ARG YB_VERSION=2.7.1.1
+ARG YB_VERSION=2.9.0.0
 ARG ROLE=gitpod
 
 USER root
@@ -16,10 +16,10 @@ RUN curl -sSLo ./yugabyte.tar.gz https://downloads.yugabyte.com/yugabyte-${YB_VE
     && ln -s /usr/local/yugabyte/bin/ysqlsh /usr/local/bin/ysqlsh \
     && chmod +x /usr/local/bin/yugabyted \
     && chmod +x /usr/local/bin/ysqlsh \
-    && rm ./yugabyte.tar.gz \
+    && rm ./yugabyte.tar.gz
 
 RUN curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-    && install minikube-linux-amd64 /usr/local/bin/minikube \
+    && install minikube-linux-amd64 /usr/local/bin/minikube
 
 RUN curl -sSLo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 \
     && chmod +x skaffold \

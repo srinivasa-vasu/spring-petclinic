@@ -6,8 +6,6 @@ tasks:
     before: /usr/local/yugabyte/bin/post_install.sh
     init: |
       yugabyted start --base_dir=$STORE/ybd1 --listen=$LISTEN
-  - name: k8s-run
-    init: minikube start
 
 # exposed ports
 ports:

@@ -1,7 +1,7 @@
 # Workshop
 
 ## Requirements
-- JDK 8 and above (11 is preferred)
+- JDK (11 is preferred)
 - [mvn 3.8.x](https://maven.apache.org/download.cgi)
 - [skaffold](https://skaffold.dev/docs/install/) - preferably the latest version
 - [YB Cloud](https://cloud.yugabyte.com)

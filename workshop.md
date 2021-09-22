@@ -1,6 +1,7 @@
 # Workshop
 
 ## Requirements
+
 - JDK (11 is preferred)
 - [mvn 3.8.x](https://maven.apache.org/download.cgi)
 - [skaffold](https://skaffold.dev/docs/install/) - preferably the latest version
@@ -11,12 +12,14 @@
 
 
 ## Prerequisites
+
 - Spring Boot & Data
 - Kubernetes
 - YugabyteDB
 
 
 ## Flow
+
 This is a well known spring boot petclinic application. We will be doing the following things.
 - Build, deploy and verify this app locally with an n-memory DB like H2
 - Build, deploy and verify the same app by replacing just the datasource with YugabyteDB cloud datasource
@@ -25,7 +28,13 @@ This is a well known spring boot petclinic application. We will be doing the fol
 - Finally, the scalability and resilient features. 
 
 
+### Get started with Yugabyte Cloud
+
+Follow this [link](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-basics/) for getting started with Yugabyte Cloud.
+
+
 ### Local In-memory DB
+
 - Fork the source repository (via the browser)
 - Git clone the forked repo to the local workstation
 
@@ -38,6 +47,7 @@ This is a well known spring boot petclinic application. We will be doing the fol
 
 
 ### Local YugabyteDB
+
 - Set the database endpoint
 
   `export YBDB_URL=<HOST_IP>`
@@ -48,6 +58,7 @@ This is a well known spring boot petclinic application. We will be doing the fol
 
 
 ### Kubernetes YugabyteDB
+
 - Make sure minikube is running
 - Navigate to `k8s` directory
 - Update `HOST_IP` with cloud endpoint in the file `k8s/configmap.yaml`
@@ -56,6 +67,7 @@ This is a well known spring boot petclinic application. We will be doing the fol
 
 
 ### Gitpod YugabyteDB
+
 - `https://gitpod.io/#<REPO_URL>`
 - Set the database endpoint
 
@@ -64,6 +76,7 @@ This is a well known spring boot petclinic application. We will be doing the fol
 
   `mvn spring-boot:run -Dspring-boot.run.profiles=yugabytedb`
 - Verify the changes
+
 
 ## Session Slide
 

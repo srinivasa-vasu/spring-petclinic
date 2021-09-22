@@ -64,3 +64,7 @@ This is a well known spring boot petclinic application. We will be doing the fol
 
   `mvn spring-boot:run -Dspring-boot.run.profiles=yugabytedb`
 - Verify the changes
+
+## Session Slide
+
+Session slide can be downloaded from [here](slide/[DSS_2021]_Building_Cloud_Native_Spring_Boot_Apps_with_Yugabyte_Cloud_and_Kubernetes.pdf)

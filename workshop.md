@@ -39,9 +39,11 @@ Follow this [link](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-basics/
 - Git clone the forked repo to the local workstation
 
   `git clone <forked_repo>`
+
 - Build & run the app using an in-memory datasource
 
   `mvn -DskipTests spring-boot:run`
+
 - Connect to the cloud database instance
 - Apply the schema changes in `src/main/resources/db/yugabytedb/user.sql` by connecting via the cloud shell
 
@@ -51,18 +53,33 @@ Follow this [link](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-basics/
 - Set the database endpoint
 
   `export YBDB_URL=<HOST_IP>`
+
 - Run the app again with `yugabytedb` profile
 
-  `mvn spring-boot:run -Dspring-boot.run.profiles=yugabytedb`
+  `mvn -DskipTests spring-boot:run -Dspring-boot.run.profiles=yugabytedb`
+
 - Verify the changes
 
 
 ### Kubernetes YugabyteDB
 
-- Make sure minikube is running
-- Navigate to `k8s` directory
+- Make sure minikube is running (If not, run the following commands)
+
+  `minikube start`
+
+- Use the docker runtime from minikube
+
+  `eval $(minikube docker-env)`
+
 - Update `HOST_IP` with cloud endpoint in the file `k8s/configmap.yaml`
+- Build the container image
+
+  `mvn -DskipTests spring-boot:build-image`
+  
+- Navigate to `k8s` directory
+
 - Run `skaffold deploy -t 2.4.5 --tail`
+
 - `minikube service petclinic` to test the application
 
 

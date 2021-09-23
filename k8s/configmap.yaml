@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  spring.datasource.initialization-mode: always
+  spring.datasource.initialization-mode: never
   spring.datasource.url: jdbc:postgresql://HOST_IP:5433/petclinic
